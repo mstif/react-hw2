@@ -6,9 +6,12 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const Login = () => {
   const [item, setItem] = useState("Жмите");
+  const textValue = useSelector((gs) => gs.textbox.textboxvalue);
+  const [itemstore, setItemStore] = useState(textValue);
   async function buttonHandler(e) {
     e.preventDefault();
     setItem("Нажали!");
@@ -58,12 +61,25 @@ const Login = () => {
           </Col>
           <Col></Col>
         </Row>
-        <Row className="mt-5">
+        <Row className="m-5">
           <Col></Col>
           <Col>
             <Form.Text id="passwordHelpBlock" muted>
               {item}
             </Form.Text>
+          </Col>
+          <Col></Col>
+        </Row>
+        <Row>
+          <Col></Col>
+          <Col>
+            <Form.Label htmlFor="Anyinfo">Информация из store</Form.Label>
+            <Form.Control
+              type="text"
+              id="Anyinfo"
+              aria-describedby="HelpBlock"
+              value={itemstore}
+            />
           </Col>
           <Col></Col>
         </Row>

@@ -6,10 +6,24 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const HomePage = () => {
-  const [item, setItem] = useState("Это начальная страница приложения");
-  async function loginHandler(e) {
+  const textValue = useSelector((gs) => gs.textbox.textboxvalue);
+  const [item, setItem] = useState(textValue);
+  const dispatch = useDispatch();
+
+  async function textHandler(e) {
+    e.preventDefault();
+    setItem(e.target.value);
+    dispatch({
+      type: "SET_START_TEXT",
+      payload: e.target.value
+    });
+  }
+
+  async function buttonHandler(e) {
     e.preventDefault();
     setItem("Lorem ipsum");
   }
@@ -32,8 +46,9 @@ const HomePage = () => {
             <Form.Control
               type="text"
               id="Anyinfo"
-							aria-describedby="HelpBlock"
-							value={item}
+              aria-describedby="HelpBlock"
+              value={item}
+              onChange={textHandler}
             />
           </Col>
           <Col></Col>
@@ -41,8 +56,8 @@ const HomePage = () => {
         <Row>
           <Col></Col>
           <Col>
-            <Button variant="primary" onClick={loginHandler} className="mt-3">
-              Установить текст
+            <Button variant="primary" onClick={buttonHandler} className="mt-3">
+              Установить текст без store
             </Button>
           </Col>
           <Col></Col>
