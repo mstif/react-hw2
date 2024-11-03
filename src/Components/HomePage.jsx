@@ -9,7 +9,10 @@ import { useState } from "react";
 
 const HomePage = () => {
   const [item, setItem] = useState("Это начальная страница приложения");
-
+  async function loginHandler(e) {
+    e.preventDefault();
+    setItem("Lorem ipsum");
+  }
   return (
     <>
       <Container>
@@ -47,10 +50,6 @@ const HomePage = () => {
       </Container>
     </>
   );
-  async function loginHandler(e) {
-    e.preventDefault();
-    setItem("Lorem ipsum");
-  }
 };
 
 export default HomePage;

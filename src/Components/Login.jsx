@@ -9,7 +9,10 @@ import { useState } from "react";
 
 const Login = () => {
   const [item, setItem] = useState("Жмите");
-
+  async function buttonHandler(e) {
+    e.preventDefault();
+    setItem("Нажали!");
+  }
   return (
     <>
       <Container>
@@ -49,7 +52,7 @@ const Login = () => {
         <Row>
           <Col></Col>
           <Col>
-            <Button variant="primary" onClick={loginHandler} className="mt-3">
+            <Button variant="primary" onClick={buttonHandler} className="mt-3">
               Войти
             </Button>
           </Col>
@@ -67,10 +70,6 @@ const Login = () => {
       </Container>
     </>
   );
-  async function loginHandler(e) {
-    e.preventDefault();
-    setItem("Нажали!");
-  }
 };
 
 export default Login;

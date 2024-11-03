@@ -8,10 +8,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
 
 const Registration = () => {
-  const [item, setItem] = useState(
-    "Здесь будет факт о кошках, если нажмете кнопку"
-  );
-
+  const [item, setItem] = useState("");
+  async function buttonHandler(e) {
+    e.preventDefault();
+    setItem("Зарегистрированы");
+  }
   return (
     <>
       <Container>
@@ -63,7 +64,7 @@ const Registration = () => {
         <Row>
           <Col></Col>
           <Col>
-            <Button variant="primary" onClick={loginHandler} className="mt-3">
+            <Button variant="primary" onClick={buttonHandler} className="mt-3">
               Зарегистрироваться
             </Button>
           </Col>
@@ -81,10 +82,6 @@ const Registration = () => {
       </Container>
     </>
   );
-  async function loginHandler(e) {
-    e.preventDefault();
-    setItem("Зарегистрированы");
-  }
 };
 
 export default Registration;
