@@ -11,7 +11,6 @@ import { useSelector } from "react-redux";
 const Login = () => {
   const [item, setItem] = useState("Жмите");
   const textValue = useSelector((gs) => gs.textbox.textboxvalue);
-  const [itemstore, setItemStore] = useState(textValue);
   async function buttonHandler(e) {
     e.preventDefault();
     setItem("Нажали!");
@@ -78,7 +77,7 @@ const Login = () => {
               type="text"
               id="Anyinfo"
               aria-describedby="HelpBlock"
-              value={itemstore}
+              value={textValue}
             />
           </Col>
           <Col></Col>
